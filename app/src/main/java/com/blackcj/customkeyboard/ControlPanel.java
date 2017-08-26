@@ -59,6 +59,6 @@ public class ControlPanel extends FrameLayout {
             }
         });
 
-        saldoText = (TextView) findViewById(R.id.text);
+        saldoText = (TextView) findViewById(R.id.saldo_value);
     }
 }
