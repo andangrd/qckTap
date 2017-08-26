@@ -1,6 +1,7 @@
 package com.blackcj.customkeyboard;
 
 import android.content.Context;
+import android.inputmethodservice.InputMethodService;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -14,15 +15,18 @@ import android.widget.Toast;
 
 public class ControlPanel extends FrameLayout {
 
+
     private Context mContext;
     private LayoutInflater layoutInflater;
+    private InputMethodService mInputMethodService;
 
     // Modules
     Button mutasiButton;
     TextView saldoText;
 
-    public ControlPanel (Context context) {
+    public ControlPanel (Context context, InputMethodService inputMethodService) {
         super(context);
+        this.mInputMethodService = inputMethodService;
         this.mContext = context;
         inflate();
         bindViews();

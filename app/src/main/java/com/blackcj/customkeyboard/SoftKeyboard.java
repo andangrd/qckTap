@@ -101,7 +101,7 @@ public class SoftKeyboard extends InputMethodService
         super.onCreate();
         // instantiate control panel
         Context context = this.getApplicationContext();
-        this.controlPanel = new ControlPanel(context);
+        this.controlPanel = new ControlPanel(context, this);
 
         mInputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
         mWordSeparators = getResources().getString(R.string.word_separators);
