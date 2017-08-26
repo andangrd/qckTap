@@ -12,6 +12,7 @@ import android.view.inputmethod.InputConnection;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,6 +71,14 @@ public class TransferView extends FrameLayout {
         EditTextAccountNumber = (TextView) findViewById(R.id.edit_text_account_number);
         EditTextAmountTransfer = (TextView) findViewById(R.id.edit_amount_transfer);
         ActiveTextView = EditTextAccountNumber;
+
+        ImageButton backButton = (ImageButton) findViewById(R.id.back_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stackNav.popView();
+            }
+        });
 
         EditTextAccountNumber.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,7 +182,8 @@ public class TransferView extends FrameLayout {
             @Override
             public void onClick(View v) {
                 CurrentButton = mButtonDelete;
-                // delete from the last char
+                String str = ActiveTextView.getText().toString();
+                deleteChar(str);
             }
         });
         mButtonNext.setOnClickListener(new View.OnClickListener() {
@@ -181,7 +191,7 @@ public class TransferView extends FrameLayout {
             public void onClick(View v) {
                 CurrentButton = mButtonNext;
                 if(ActiveTextView == EditTextAccountNumber){
-                    // go to next
+                    setActiveField(EditTextAmountTransfer, EditTextAccountNumber);
                 } else {
                     // go fire the transfer api
                 }
@@ -202,5 +212,12 @@ public class TransferView extends FrameLayout {
         InactiveTextView = inactiveField;
         ActiveTextView.setBackgroundResource(R.drawable.active_field);
         InactiveTextView.setBackgroundResource(0);
+    }
+
+    private void deleteChar (String str) {
+        if (str != null && str.length() > 0) {
+            str = str.substring(0, str.length() - 1);
+        }
+        ActiveTextView.setText(str);
     }
 }
