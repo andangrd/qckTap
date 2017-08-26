@@ -4,6 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/cloud">
+    <ImageView
+        android:id="@+id/ivKeyboard"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_quicktap_logo" />
     <TextView android:id="@+id/saldo_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,4 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mutasi" />
+    <Button android:id="@+id/transfer_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transfer" />
 </LinearLayout>
