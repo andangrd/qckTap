@@ -23,7 +23,6 @@ public class ControlPanel extends FrameLayout {
     TextView saldoText;
     View transferView;
 
-<<<<<<< HEAD
     // View
     private MutasiView mutasiView;
 
@@ -32,14 +31,6 @@ public class ControlPanel extends FrameLayout {
         this.stackNav = _stackNav;
 
         // Init
-=======
-    public ControlPanel (Context context, InputMethodService inputMethodService) {
-        super(context);
-        this.mInputMethodService = inputMethodService;
-        this.mContext = context;
-        //this.transferView = new TransferView(context, this.mInputMethodService, this);
-
->>>>>>> a82c180930715b8e3a1c929d152dec95cdcf609c
         inflate();
         bindViews();
         callApi();
