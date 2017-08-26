@@ -77,7 +77,9 @@ public class SoftKeyboard extends InputMethodService
     private boolean mCapsLock;
     private long mLastShiftTime;
     private long mMetaState;
-    
+
+    private View controlPanel;
+
     private LatinKeyboard mSymbolsKeyboard;
     private LatinKeyboard mSymbolsShiftedKeyboard;
     private LatinKeyboard mQwertyKeyboard;
@@ -129,12 +131,16 @@ public class SoftKeyboard extends InputMethodService
      * a configuration change.
      */
     @Override public View onCreateInputView() {
-        mInputView = (LatinKeyboardView) getLayoutInflater().inflate(
-                R.layout.input, null);
-        mInputView.setOnKeyboardActionListener(this);
-        mInputView.setPreviewEnabled(false);
-        setLatinKeyboard(mQwertyKeyboard);
-        return mInputView;
+//        mInputView = (LatinKeyboardView) getLayoutInflater().inflate(
+//                R.layout.input, null);
+//        mInputView.setOnKeyboardActionListener(this);
+//        mInputView.setPreviewEnabled(false);
+//        setLatinKeyboard(mQwertyKeyboard);
+//        return mInputView;
+        Context context = this.getApplicationContext();
+        controlPanel = new ControlPanel(context);
+        //controlPanel = (View)getLayoutInflater().inflate(R.layout.control_panel, null);
+        return controlPanel;
     }
 
     private void setLatinKeyboard(LatinKeyboard nextKeyboard) {
@@ -273,10 +279,11 @@ public class SoftKeyboard extends InputMethodService
     @Override public void onStartInputView(EditorInfo attribute, boolean restarting) {
         super.onStartInputView(attribute, restarting);
         // Apply the selected keyboard to the input view.
-        setLatinKeyboard(mCurKeyboard);
-        mInputView.closing();
-        final InputMethodSubtype subtype = mInputMethodManager.getCurrentInputMethodSubtype();
-        mInputView.setSubtypeOnSpaceKey(subtype);
+
+//        setLatinKeyboard(mCurKeyboard);
+//        mInputView.closing();
+//        final InputMethodSubtype subtype = mInputMethodManager.getCurrentInputMethodSubtype();
+//        mInputView.setSubtypeOnSpaceKey(subtype);
     }
 
     @Override
