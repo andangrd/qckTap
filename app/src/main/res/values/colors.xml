@@ -18,6 +18,10 @@
 */
 -->
 <resources>
+    <color name="cloud">#ecf0f1</color>
+    <color name="river">#3498db</color>
+    <color name="belize">#2980b9</color>
+    <color name="silver">#bdc3c7</color>
     <color name="colorPrimary">#2980b9</color>
     <color name="colorPrimaryDark">#2c3e50</color>
     <color name="colorAccent">#c0392b</color>
