@@ -31,12 +31,12 @@ public class StackNav {
 
     public void popView() {
         View poppedView;
+
         if(stackView.size() > 1) {
-            poppedView = stackView.pop();
-        } else {
-            poppedView = stackView.peek();
+            stackView.pop();
         }
 
+        poppedView = stackView.peek();
         this.inputMethodService.setInputView(poppedView);
     }
 }
