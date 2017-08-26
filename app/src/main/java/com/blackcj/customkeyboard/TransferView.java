@@ -22,18 +22,16 @@ public class TransferView extends FrameLayout {
     private ControlPanel controlPanel;
 
     // Modules
-    EditText EditTextName;
+    EditText EditTextAccountNumber;
+    EditText EditTextAmountTransfer;
 
     public TransferView (Context context, InputMethodService inputMethodService) {
         super(context);
         this.mInputMethodService = inputMethodService;
         this.mContext = context;
-        //this.controlPanel = controlPanel;
-
+        
         inflate();
         bindViews();
-
-        //callApi();
     }
 
     private void inflate() {
@@ -43,6 +41,8 @@ public class TransferView extends FrameLayout {
     }
 
     public void bindViews () {
-        EditTextName = (EditText) findViewById(R.id.EditTextName);
+        EditTextAccountNumber = (EditText) findViewById(R.id.edit_text_account_number);
+        EditTextAmountTransfer = (EditText) findViewById(R.id.edit_amount_transfer);
+
     }
 }

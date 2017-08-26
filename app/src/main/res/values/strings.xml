@@ -32,6 +32,10 @@
     <!-- Labels for subtype -->
     <string name="label_subtype_generic">%s</string>
     <string name="label_subtype_en_GB">English (GB)</string>
+    <string name="label_account_number" >Account Number</string>
+    <string name="label_amount">Amount     </string>
+    <string name="edit_text_account_number">Input the account number</string>
+    <string name="edit_text_amount">Input the Amount</string>
 
     <!-- Titles for ImePreference -->
     <string name="settings_name">BCA Quick Tap</string>
