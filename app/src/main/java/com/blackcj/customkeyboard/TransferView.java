@@ -1,6 +1,7 @@
 package com.blackcj.customkeyboard;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -23,7 +24,6 @@ import android.widget.Toast;
 public class TransferView extends FrameLayout {
     private LayoutInflater layoutInflater;
     private StackNav stackNav;
-    private Context mContext;
     private Button mButton1;
     private Button mButton2;
     private Button mButton3;
@@ -36,10 +36,13 @@ public class TransferView extends FrameLayout {
     private Button mButton0;
     private Button mButtonDelete;
     private Button mButtonEnter;
+    private Button CurrentButton;
 
     // Modules
     TextView EditTextAccountNumber;
     TextView EditTextAmountTransfer;
+    TextView ActiveTextView;
+    TextView InactiveTexrView;
     InputConnection inputConnection;
 
 
@@ -68,7 +71,25 @@ public class TransferView extends FrameLayout {
     public void bindViews () {
         EditTextAccountNumber = (TextView) findViewById(R.id.edit_text_account_number);
         EditTextAmountTransfer = (TextView) findViewById(R.id.edit_amount_transfer);
+        ActiveTextView = EditTextAccountNumber;
 
+        EditTextAccountNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //setActiveField(EditTextAccountNumber, EditTextAmountTransfer);
+                ActiveTextView = EditTextAccountNumber;
+                InactiveTexrView = EditTextAmountTransfer;
+                ActiveTextView.setBackgroundResource(R.drawable.active_field);
+            }
+        });
+
+        EditTextAmountTransfer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActiveTextView = EditTextAccountNumber;
+                InactiveTexrView = EditTextAccountNumber;
+            }
+        });
 
         mButton1 = (Button) findViewById(R.id.button_1);
         mButton2 = (Button) findViewById(R.id.button_2);
@@ -86,13 +107,8 @@ public class TransferView extends FrameLayout {
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("D", "hahahahha");
-                //mInputMethodService.setInputView(this.transferView);
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(stackNav.getInputMethodService().getApplicationContext(), text, duration);
-                toast.show();
+                CurrentButton = mButton1;
+                setValueOfText();
             }
         });
 
@@ -228,5 +244,12 @@ public class TransferView extends FrameLayout {
                 toast.show();
             }
         });
+    }
+
+    public void setValueOfText () {
+        String currentValue = ActiveTextView.getText().toString();
+        String additionalValue = CurrentButton.getText().toString();
+
+        ActiveTextView.setText(currentValue+additionalValue);
     }
 }

@@ -26,7 +26,8 @@
                 android:hint="@string/edit_text_account_number"
                 android:inputType="textPersonName"
                 android:textColorHint="@color/colorPrimary"
-                android:layout_width="fill_parent" />
+                android:layout_width="fill_parent"
+                android:textColor="@color/colorPrimaryDark" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,9 +44,11 @@
                 android:id="@+id/edit_amount_transfer"
                 android:layout_height="wrap_content"
                 android:hint="@string/edit_text_amount"
+                android:background="@drawable/active_field"
                 android:inputType="textPersonName"
                 android:textColorHint="@color/colorPrimary"
-                android:layout_width="fill_parent" />
+                android:layout_width="fill_parent"
+                android:textColor="@color/colorPrimaryDark" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
