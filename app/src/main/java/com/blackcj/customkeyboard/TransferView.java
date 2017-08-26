@@ -26,6 +26,9 @@ import com.blackcj.customkeyboard.BCAClient.TransferResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static android.content.ClipDescription.MIMETYPE_TEXT_PLAIN;
+import static android.content.Context.CLIPBOARD_SERVICE;
+
 /**
  * Created by mitrais on 8/26/17.
  */
@@ -48,6 +51,7 @@ public class TransferView extends FrameLayout {
     private Button mButtonDelete;
     private Button mButtonNext;
     private Button CurrentButton;
+    private Button mPaste1;
 
     // Modules
     TextView EditTextAccountNumber;
@@ -101,6 +105,37 @@ public class TransferView extends FrameLayout {
             @Override
             public void onClick(View v) {
                 setActiveField(EditTextAmountTransfer, EditTextAccountNumber);
+            }
+        });
+
+        mPaste1 = (Button) findViewById(R.id.button_paste_account_no);
+        mPaste1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            ClipboardManager clipboard = (ClipboardManager)
+                    stackNav.getInputMethodService().getApplicationContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            String pasteData = "";
+
+            if (!(clipboard.hasPrimaryClip())) {
+
+                mPaste1.setEnabled(false);
+
+            } else if (!(clipboard.getPrimaryClipDescription().hasMimeType(MIMETYPE_TEXT_PLAIN))) {
+
+                // This disables the paste menu item, since the clipboard has data but it is not plain text
+                mPaste1.setEnabled(false);
+            } else {
+
+                // This enables the paste menu item, since the clipboard contains plain text.
+                mPaste1.setEnabled(true);
+            }
+
+            ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
+
+            // Gets the clipboard as text.
+            pasteData = item.getText().toString();
+
+            EditTextAccountNumber.setText(pasteData);
             }
         });
 
