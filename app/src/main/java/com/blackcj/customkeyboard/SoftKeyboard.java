@@ -90,7 +90,7 @@ public class SoftKeyboard extends InputMethodService
 
     private SpellCheckerSession mScs;
     private List<String> mSuggestions;
-
+    private StackNav stackNav;
 
 
     /**
@@ -99,10 +99,6 @@ public class SoftKeyboard extends InputMethodService
      */
     @Override public void onCreate() {
         super.onCreate();
-        // instantiate control panel
-        Context context = this.getApplicationContext();
-        this.controlPanel = new ControlPanel(context, this);
-
         mInputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
         mWordSeparators = getResources().getString(R.string.word_separators);
         final TextServicesManager tsm = (TextServicesManager) getSystemService(
@@ -141,6 +137,10 @@ public class SoftKeyboard extends InputMethodService
         mInputView.setOnKeyboardActionListener(this);
         mInputView.setPreviewEnabled(false);
         setLatinKeyboard(mQwertyKeyboard);
+
+        // create navigation stack
+        this.stackNav = new StackNav(this, mInputView);
+
         return mInputView;
     }
 
@@ -543,10 +543,8 @@ public class SoftKeyboard extends InputMethodService
         } else if (primaryCode == Keyboard.KEYCODE_SHIFT) {
             handleShift();
         } else if (primaryCode == Keyboard.KEYCODE_CANCEL) {
-            this.setInputView(this.controlPanel);
-
-            //handleClose();
-
+            this.controlPanel = new ControlPanel(this.stackNav);
+            this.stackNav.pushView(controlPanel);
             return;
         } else if (primaryCode == LatinKeyboardView.KEYCODE_LANGUAGE_SWITCH) {
             handleLanguageSwitch();
