@@ -2,40 +2,44 @@
 <!--  Single List Item Design -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:padding="12sp">
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="12sp">
+    <TextView
+        android:id="@+id/nama_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp">
+    </TextView>
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="12sp">
-        <TextView
-            android:id="@+id/nama_text"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:padding="10dip"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp"
-            android:textStyle="bold" >
-        </TextView>
+        android:paddingTop="3sp"
+        android:paddingBottom="12sp">
         <TextView
             android:id="@+id/date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/silver"
+            android:textSize="10sp">
+        </TextView>
+        <TextView
+            android:id="@+id/amount_text"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:padding="10dip"
-            android:textColor="@color/silver"
-            android:textSize="12sp">
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="12sp"
+            android:layout_marginStart="6sp"
+            android:textStyle="bold">
         </TextView>
     </LinearLayout>
-    <TextView
-        android:id="@+id/amount_text"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="10dip"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="12sp">
-    </TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="@color/silver"/>
 </LinearLayout>

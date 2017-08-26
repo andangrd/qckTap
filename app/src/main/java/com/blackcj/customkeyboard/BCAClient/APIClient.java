@@ -55,4 +55,10 @@ public class APIClient {
         Type responseType = new TypeToken<TransferResponse>(){}.getType();
         return new Gson().fromJson(raw, responseType);
     }
+
+    public ArrayList<BalanceResponse> getBalance() throws IOException {
+        String raw = this.downloadString(this.baseURL.concat("balance/?account=8220000053"));
+        Type responseType = new TypeToken<ArrayList<BalanceResponse>>(){}.getType();
+        return new Gson().fromJson(raw, responseType);
+    }
 }

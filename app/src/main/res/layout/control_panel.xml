@@ -47,28 +47,44 @@
         <TextView android:id="@+id/saldo_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="IDR 120.000.000"
+            android:text="IDR 0"
             android:textSize="26sp"
             android:textColor="@color/colorPrimary" />
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/share_section"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="12sp"
         android:layout_marginBottom="12sp">
-        <TextView android:id="@+id/nama_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Jonru Ginting"
-            android:textSize="18sp"
-            android:textColor="@color/colorPrimary" />
-        <TextView android:id="@+id/nama_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="23200003433"
-            android:textSize="13sp"
-            android:textColor="@color/colorPrimary" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/ava_jonru"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/silver"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="12sp">
+            <TextView android:id="@+id/nama_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jonru Ginting"
+                android:textSize="16sp"
+                android:textColor="@color/colorPrimary" />
+            <TextView android:id="@+id/no_rekening"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0000000000000"
+                android:textSize="12sp"
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -88,9 +104,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Transfer" />
-        <Button android:id="@+id/shortcut_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="rekening" />
     </LinearLayout>
 </LinearLayout>

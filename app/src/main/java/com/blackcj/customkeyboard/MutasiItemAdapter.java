@@ -16,8 +16,10 @@ import java.util.ArrayList;
  */
 
 public class MutasiItemAdapter extends ArrayAdapter<MutasiItemResponse> {
+    private Context mContext;
     public MutasiItemAdapter(Context context, ArrayList<MutasiItemResponse> items) {
         super(context, 0, items);
+        mContext = context;
     }
 
     @Override
@@ -34,9 +36,17 @@ public class MutasiItemAdapter extends ArrayAdapter<MutasiItemResponse> {
         TextView amountText = (TextView) convertView.findViewById(R.id.amount_text);
 
         // Populate the data into the template view using the data object
-        namaText.setText(item.getTransactionName());
+        namaText.setText(item.getTrailer());
         dateText.setText(item.getTransactionDate());
-        amountText.setText(item.getTransactionAmount());
+        float balance = Float.parseFloat(item.getTransactionAmount());
+
+        if(item.getTransactionType().equals("D")) {
+            amountText.setText("-".concat(Util.getBalance(balance, "IDR")));
+            amountText.setTextColor(mContext.getResources().getColor(R.color.pomegranate));
+        } else {
+            amountText.setText("+".concat(Util.getBalance(balance, "IDR")));
+            amountText.setTextColor(mContext.getResources().getColor(R.color.greenSea));
+        }
 
         // Return the completed view to render on screen
         return convertView;
