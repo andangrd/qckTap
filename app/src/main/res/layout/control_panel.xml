@@ -4,34 +4,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/cloud">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/silver"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
-        <Button android:id="@+id/back_button"
+        android:orientation="horizontal"
+        android:padding="12sp">
+        <ImageButton
+            android:id="@+id/back_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="back" />
+            android:layout_height="24dp"
+            android:src="@drawable/dark_back"
+            android:background="@null"/>
         <ImageView
             android:id="@+id/ivKeyboard"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
+            android:layout_width="160dp"
+            android:layout_height="24dp"
             android:layout_alignParentLeft="true"
-            android:padding="10dp"
+            android:layout_marginStart="12sp"
             android:scaleType="fitCenter"
             android:src="@drawable/icon_quicktap_logo" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
+        android:background="@color/silver"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginStart="12sp"
-        android:layout_marginTop="24sp"
-        android:layout_marginBottom="24sp">
+        android:layout_marginTop="24sp">
         <TextView android:id="@+id/saldo_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +54,32 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="12sp"
+        android:layout_marginBottom="12sp">
+        <TextView android:id="@+id/nama_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jonru Ginting"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary" />
+        <TextView android:id="@+id/nama_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23200003433"
+            android:textSize="13sp"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/asbestos"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="6sp"
+        android:background="@color/concrete">
         <Button android:id="@+id/mutasi_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,5 +88,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Transfer" />
+        <Button android:id="@+id/shortcut_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="rekening" />
     </LinearLayout>
 </LinearLayout>

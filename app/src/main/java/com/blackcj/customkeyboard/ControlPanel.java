@@ -4,8 +4,10 @@ import android.content.Context;
 import android.inputmethodservice.InputMethodService;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputConnection;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +57,16 @@ public class ControlPanel extends FrameLayout {
             }
         });
 
-        Button backButton = (Button) findViewById(R.id.back_button);
+        Button shortcutButton = (Button) findViewById(R.id.shortcut_button);
+        shortcutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputConnection textConnection = stackNav.getInputMethodService().getCurrentInputConnection();
+                textConnection.commitText("234328483243\n a/n Yoga Muda", 0);
+            }
+        });
+
+        ImageButton backButton = (ImageButton) findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
