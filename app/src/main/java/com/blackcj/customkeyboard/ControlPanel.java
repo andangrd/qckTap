@@ -14,11 +14,8 @@ import android.widget.Toast;
  */
 
 public class ControlPanel extends FrameLayout {
-
-
-    private Context mContext;
     private LayoutInflater layoutInflater;
-    private InputMethodService mInputMethodService;
+    private StackNav stackNav;
 
     // Modules
     Button mutasiButton;
@@ -26,15 +23,25 @@ public class ControlPanel extends FrameLayout {
     TextView saldoText;
     View transferView;
 
+<<<<<<< HEAD
+    // View
+    private MutasiView mutasiView;
+
+    public ControlPanel (StackNav _stackNav) {
+        super(_stackNav.getInputMethodService().getApplicationContext());
+        this.stackNav = _stackNav;
+
+        // Init
+=======
     public ControlPanel (Context context, InputMethodService inputMethodService) {
         super(context);
         this.mInputMethodService = inputMethodService;
         this.mContext = context;
         //this.transferView = new TransferView(context, this.mInputMethodService, this);
 
+>>>>>>> a82c180930715b8e3a1c929d152dec95cdcf609c
         inflate();
         bindViews();
-
         callApi();
     }
 
@@ -44,22 +51,26 @@ public class ControlPanel extends FrameLayout {
     }
 
     private void inflate() {
-        layoutInflater = (LayoutInflater) mContext
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        Context context = this.stackNav.getInputMethodService().getApplicationContext();
+        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         layoutInflater.inflate(R.layout.control_panel, this, true);
     }
 
     private void bindViews() {
 
-        mutasiButton = (Button) findViewById(R.id.button);
+        mutasiButton = (Button) findViewById(R.id.mutasi_button);
         mutasiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
+                stackNav.pushView(new MutasiView(stackNav));
+            }
+        });
 
-                Toast toast = Toast.makeText(mContext, text, duration);
-                toast.show();
+        Button backButton = (Button) findViewById(R.id.back_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stackNav.popView();
             }
         });
 
