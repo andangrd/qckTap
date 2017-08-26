@@ -99,6 +99,10 @@ public class SoftKeyboard extends InputMethodService
      */
     @Override public void onCreate() {
         super.onCreate();
+        // instantiate control panel
+        Context context = this.getApplicationContext();
+        this.controlPanel = new ControlPanel(context);
+
         mInputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
         mWordSeparators = getResources().getString(R.string.word_separators);
         final TextServicesManager tsm = (TextServicesManager) getSystemService(
@@ -131,16 +135,13 @@ public class SoftKeyboard extends InputMethodService
      * a configuration change.
      */
     @Override public View onCreateInputView() {
-//        mInputView = (LatinKeyboardView) getLayoutInflater().inflate(
-//                R.layout.input, null);
-//        mInputView.setOnKeyboardActionListener(this);
-//        mInputView.setPreviewEnabled(false);
-//        setLatinKeyboard(mQwertyKeyboard);
-//        return mInputView;
-        Context context = this.getApplicationContext();
-        controlPanel = new ControlPanel(context);
-        //controlPanel = (View)getLayoutInflater().inflate(R.layout.control_panel, null);
-        return controlPanel;
+        mInputView = (LatinKeyboardView) getLayoutInflater().inflate(
+                R.layout.input, null);
+
+        mInputView.setOnKeyboardActionListener(this);
+        mInputView.setPreviewEnabled(false);
+        setLatinKeyboard(mQwertyKeyboard);
+        return mInputView;
     }
 
     private void setLatinKeyboard(LatinKeyboard nextKeyboard) {
@@ -280,10 +281,10 @@ public class SoftKeyboard extends InputMethodService
         super.onStartInputView(attribute, restarting);
         // Apply the selected keyboard to the input view.
 
-//        setLatinKeyboard(mCurKeyboard);
-//        mInputView.closing();
-//        final InputMethodSubtype subtype = mInputMethodManager.getCurrentInputMethodSubtype();
-//        mInputView.setSubtypeOnSpaceKey(subtype);
+        setLatinKeyboard(mCurKeyboard);
+        mInputView.closing();
+        final InputMethodSubtype subtype = mInputMethodManager.getCurrentInputMethodSubtype();
+        mInputView.setSubtypeOnSpaceKey(subtype);
     }
 
     @Override
@@ -457,8 +458,6 @@ public class SoftKeyboard extends InputMethodService
                         keyCode, event);
             }
         }
-
-        
         return super.onKeyUp(keyCode, event);
     }
 
@@ -544,7 +543,10 @@ public class SoftKeyboard extends InputMethodService
         } else if (primaryCode == Keyboard.KEYCODE_SHIFT) {
             handleShift();
         } else if (primaryCode == Keyboard.KEYCODE_CANCEL) {
-            handleClose();
+            this.setInputView(this.controlPanel);
+
+            //handleClose();
+
             return;
         } else if (primaryCode == LatinKeyboardView.KEYCODE_LANGUAGE_SWITCH) {
             handleLanguageSwitch();
