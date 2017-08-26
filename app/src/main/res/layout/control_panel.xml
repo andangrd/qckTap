@@ -4,39 +4,58 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/cloud">
-    <Button android:id="@+id/back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="back"
-        android:layout_marginBottom="24sp"/>
-    <ImageView
-        android:id="@+id/ivKeyboard"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:padding="10dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/icon_quicktap_logo" />
-    <TextView android:id="@+id/saldo_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SALDO"
-        android:textSize="14sp"
-        android:textColor="@color/silver"
-        android:layout_marginLeft="12sp" />
-    <TextView android:id="@+id/saldo_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="IDR 120.000.000"
-        android:textSize="28sp"
-        android:layout_marginLeft="12sp"
-        android:textColor="@color/colorPrimary" />
-    <Button android:id="@+id/mutasi_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mutasi" />
-    <Button android:id="@+id/transfer_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Transfer" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="back" />
+        <ImageView
+            android:id="@+id/ivKeyboard"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_quicktap_logo" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="12sp"
+        android:layout_marginTop="24sp"
+        android:layout_marginBottom="24sp">
+        <TextView android:id="@+id/saldo_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SALDO"
+            android:textSize="12sp"
+            android:textColor="@color/silver" />
+        <TextView android:id="@+id/saldo_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IDR 120.000.000"
+            android:textSize="26sp"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button android:id="@+id/mutasi_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mutasi" />
+        <Button android:id="@+id/transfer_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transfer" />
+    </LinearLayout>
 </LinearLayout>
