@@ -1,6 +1,7 @@
 package com.blackcj.customkeyboard;
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +35,18 @@ public class MutasiView extends FrameLayout {
         // Init
         inflate();
         bindViews();
-        callApi();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                callApi();
+            }
+        }, 500);
     }
 
     private void callApi() {
