@@ -22,6 +22,7 @@ import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.os.IBinder;
+import android.os.StrictMode;
 import android.text.InputType;
 import android.text.method.MetaKeyKeyListener;
 import android.util.Log;
@@ -99,6 +100,12 @@ public class SoftKeyboard extends InputMethodService
      */
     @Override public void onCreate() {
         super.onCreate();
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
         mInputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
         mWordSeparators = getResources().getString(R.string.word_separators);
         final TextServicesManager tsm = (TextServicesManager) getSystemService(
