@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -16,11 +17,22 @@ public class ControlPanel extends FrameLayout {
     private Context mContext;
     private LayoutInflater layoutInflater;
 
+    // Modules
+    Button mutasiButton;
+    TextView saldoText;
+
     public ControlPanel (Context context) {
         super(context);
         this.mContext = context;
         inflate();
         bindViews();
+
+        callApi();
+    }
+
+    private void callApi() {
+        // Panggil API mas havit
+        saldoText.setText("IDR. 200.000.000");
     }
 
     private void inflate() {
@@ -30,8 +42,9 @@ public class ControlPanel extends FrameLayout {
     }
 
     private void bindViews() {
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+
+        mutasiButton = (Button) findViewById(R.id.button);
+        mutasiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CharSequence text = "Hello toast!";
@@ -41,5 +54,7 @@ public class ControlPanel extends FrameLayout {
                 toast.show();
             }
         });
+
+        saldoText = (TextView) findViewById(R.id.text);
     }
 }
