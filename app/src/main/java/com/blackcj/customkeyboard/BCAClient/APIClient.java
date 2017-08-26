@@ -26,6 +26,19 @@ import okhttp3.Response;
 
 public class APIClient {
     private String baseURL = "http://182.16.165.88/";
+    private static String noRek = "8220000053";
+
+    public static void switchNoRek() {
+        if(noRek.equals("8220000053")) {
+            noRek = "8220000151";
+        } else {
+            noRek = "8220000053";
+        }
+    }
+
+    public static boolean getNoRek() {
+        return noRek.equals("8220000053");
+    }
 
     private String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
@@ -45,19 +58,19 @@ public class APIClient {
     }
 
     public MutasiResponse getMutasi() throws IOException {
-        String raw = this.downloadString(this.baseURL.concat("transaction/?account=8220000053"));
+        String raw = this.downloadString(this.baseURL.concat("transaction/?account=").concat(noRek));
         Type responseType = new TypeToken<MutasiResponse>(){}.getType();
         return new Gson().fromJson(raw, responseType);
     }
 
     public TransferResponse transfer(String destination, String amount) throws IOException {
-        String raw = this.downloadString(this.baseURL.concat("transfer?source=8220000053&destination="+destination+"&amount="+amount));
+        String raw = this.downloadString(this.baseURL.concat("transfer?source=" + noRek + "&destination="+destination+"&amount="+amount));
         Type responseType = new TypeToken<TransferResponse>(){}.getType();
         return new Gson().fromJson(raw, responseType);
     }
 
     public ArrayList<BalanceResponse> getBalance() throws IOException {
-        String raw = this.downloadString(this.baseURL.concat("balance/?account=8220000053"));
+        String raw = this.downloadString(this.baseURL.concat("balance/?account=" + noRek));
         Type responseType = new TypeToken<ArrayList<BalanceResponse>>(){}.getType();
         return new Gson().fromJson(raw, responseType);
     }
