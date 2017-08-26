@@ -1,8 +1,10 @@
 package com.blackcj.customkeyboard;
 
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -234,12 +236,16 @@ public class TransferView extends FrameLayout {
         mButtonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CurrentButton = mButtonNext;
-                if(ActiveTextView == EditTextAccountNumber){
-                    setActiveField(EditTextAmountTransfer, EditTextAccountNumber);
-                } else {
+            CurrentButton = mButtonNext;
+            if(ActiveTextView == EditTextAccountNumber){
+                setActiveField(EditTextAmountTransfer, EditTextAccountNumber);
+            } else {
+                String str1 = EditTextAccountNumber.getText().toString();
+                String str2 = EditTextAmountTransfer.getText().toString();
+                if(str1 != null && !str1.isEmpty() && str2 != null && !str2.isEmpty()){
                     callApi();
                 }
+            }
 
             }
         });
@@ -273,13 +279,8 @@ public class TransferView extends FrameLayout {
             String destination = EditTextAccountNumber.getText().toString();
             String amount = EditTextAmountTransfer.getText().toString();
             TransferResponse items = client.transfer(destination, amount);
-            String status = items.getStatus();
 
-            CharSequence text = "Please wait, your transaction is Pending, we will notice once it's success. :)";
-
-            if(status == "Success") {
-                text = "Congratulation, your transaction is successful. :)";
-            }
+            CharSequence text = "ongratulation, your transaction is successful. :)";
 
             int duration = Toast.LENGTH_SHORT;
 
