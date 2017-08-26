@@ -16,7 +16,7 @@
         <ImageButton
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
-            android:layout_height="24dp"
+            android:layout_height="18dp"
             android:src="@drawable/dark_back"
             android:background="@null"/>
         <ImageView
@@ -64,7 +64,7 @@
             android:id="@+id/profile_image"
             android:layout_width="42dp"
             android:layout_height="42dp"
-            android:src="@drawable/ava_jonru"
+            android:src="@drawable/ava_chelsea"
             app:civ_border_width="2dp"
             app:civ_border_color="@color/silver"/>
         <LinearLayout
@@ -75,7 +75,7 @@
             <TextView android:id="@+id/nama_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jonru Ginting"
+                android:text="Chelsea Islan"
                 android:textSize="16sp"
                 android:textColor="@color/colorPrimary" />
             <TextView android:id="@+id/no_rekening"
@@ -97,12 +97,14 @@
         android:padding="6sp"
         android:background="@color/concrete">
         <Button android:id="@+id/mutasi_button"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Mutasi" />
         <Button android:id="@+id/transfer_button"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Transfer" />
     </LinearLayout>
 </LinearLayout>
