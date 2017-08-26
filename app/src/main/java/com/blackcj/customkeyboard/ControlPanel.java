@@ -19,8 +19,11 @@ public class ControlPanel extends FrameLayout {
 
     // Modules
     Button mutasiButton;
+    Button transferButton;
     TextView saldoText;
+    View transferView;
 
+<<<<<<< HEAD
     // View
     private MutasiView mutasiView;
 
@@ -29,6 +32,14 @@ public class ControlPanel extends FrameLayout {
         this.stackNav = _stackNav;
 
         // Init
+=======
+    public ControlPanel (Context context, InputMethodService inputMethodService) {
+        super(context);
+        this.mInputMethodService = inputMethodService;
+        this.mContext = context;
+        //this.transferView = new TransferView(context, this.mInputMethodService, this);
+
+>>>>>>> a82c180930715b8e3a1c929d152dec95cdcf609c
         inflate();
         bindViews();
         callApi();
@@ -62,6 +73,22 @@ public class ControlPanel extends FrameLayout {
                 stackNav.popView();
             }
         });
+
+        transferButton = (Button) findViewById(R.id.transfer_button);
+
+//        View transferViewA = this.transferView;
+//
+//        transferButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //mInputMethodService.setInputView(this.transferView);
+//                CharSequence text = "Hello toast!";
+//                int duration = Toast.LENGTH_SHORT;
+//
+//                Toast toast = Toast.makeText(mContext, text, duration);
+//                toast.show();
+//            }
+//        });
 
         saldoText = (TextView) findViewById(R.id.saldo_value);
     }
