@@ -40,7 +40,6 @@ public class APIClient {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder().url(url).build();
-        Log.d("asa", url);
         Response response = client.newCall(request).execute();
         return response.body().string();
     }
@@ -48,7 +47,12 @@ public class APIClient {
     public MutasiResponse getMutasi() throws IOException {
         String raw = this.downloadString(this.baseURL.concat("transaction/?account=8220000053"));
         Type responseType = new TypeToken<MutasiResponse>(){}.getType();
-        Log.d("Sheeet", raw);
+        return new Gson().fromJson(raw, responseType);
+    }
+
+    public TransferResponse transfer(String destination, String amount) throws IOException {
+        String raw = this.downloadString(this.baseURL.concat("transfer?source=8220000053&destination="+destination+"&amount="+amount));
+        Type responseType = new TypeToken<TransferResponse>(){}.getType();
         return new Gson().fromJson(raw, responseType);
     }
 }

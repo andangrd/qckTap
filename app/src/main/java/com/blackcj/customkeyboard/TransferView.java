@@ -1,5 +1,7 @@
 package com.blackcj.customkeyboard;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
@@ -13,8 +15,16 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.blackcj.customkeyboard.BCAClient.APIClient;
+import com.blackcj.customkeyboard.BCAClient.MutasiItemResponse;
+import com.blackcj.customkeyboard.BCAClient.TransferResponse;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by mitrais on 8/26/17.
@@ -193,7 +203,7 @@ public class TransferView extends FrameLayout {
                 if(ActiveTextView == EditTextAccountNumber){
                     setActiveField(EditTextAmountTransfer, EditTextAccountNumber);
                 } else {
-                    // go fire the transfer api
+                    callApi();
                 }
 
             }
@@ -219,5 +229,34 @@ public class TransferView extends FrameLayout {
             str = str.substring(0, str.length() - 1);
         }
         ActiveTextView.setText(str);
+    }
+
+    private void callApi () {
+        APIClient client = new APIClient();
+
+        try {
+            String destination = EditTextAccountNumber.getText().toString();
+            String amount = EditTextAmountTransfer.getText().toString();
+            TransferResponse items = client.transfer(destination, amount);
+            String status = items.getStatus();
+
+            CharSequence text = "Please wait, your transaction is Pending, we will notice once it's success. :)";
+
+            if(status == "Success") {
+                text = "Congratulation, your transaction is successful. :)";
+            }
+
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(stackNav.getInputMethodService().getApplicationContext(), text, duration);
+            toast.show();
+            InputConnection textConnection = stackNav.getInputMethodService().getCurrentInputConnection();
+            textConnection.commitText("receipt : "+items.getReceipt(), 0);
+
+            stackNav.popView();
+
+        } catch(IOException ioEx) {
+            Log.d("error", ioEx.getMessage());
+        }
     }
 }
