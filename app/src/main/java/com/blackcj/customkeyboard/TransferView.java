@@ -35,14 +35,14 @@ public class TransferView extends FrameLayout {
     private Button mButton9;
     private Button mButton0;
     private Button mButtonDelete;
-    private Button mButtonEnter;
+    private Button mButtonNext;
     private Button CurrentButton;
 
     // Modules
     TextView EditTextAccountNumber;
     TextView EditTextAmountTransfer;
     TextView ActiveTextView;
-    TextView InactiveTexrView;
+    TextView InactiveTextView;
     InputConnection inputConnection;
 
 
@@ -55,11 +55,9 @@ public class TransferView extends FrameLayout {
     public TransferView (StackNav _stackNav) {
         super(_stackNav.getInputMethodService().getApplicationContext());
         this.stackNav = _stackNav;
-        //this.mContext = _stackNav.getInputMethodService().getApplicationContext();
 
         inflate();
         bindViews();
-        //init(_stackNav.getInputMethodService().getApplicationContext());
     }
 
     private void inflate() {
@@ -76,18 +74,14 @@ public class TransferView extends FrameLayout {
         EditTextAccountNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //setActiveField(EditTextAccountNumber, EditTextAmountTransfer);
-                ActiveTextView = EditTextAccountNumber;
-                InactiveTexrView = EditTextAmountTransfer;
-                ActiveTextView.setBackgroundResource(R.drawable.active_field);
+                setActiveField(EditTextAccountNumber, EditTextAmountTransfer);
             }
         });
 
         EditTextAmountTransfer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActiveTextView = EditTextAccountNumber;
-                InactiveTexrView = EditTextAccountNumber;
+                setActiveField(EditTextAmountTransfer, EditTextAccountNumber);
             }
         });
 
@@ -102,7 +96,7 @@ public class TransferView extends FrameLayout {
         mButton9 = (Button) findViewById(R.id.button_9);
         mButton0 = (Button) findViewById(R.id.button_0);
         mButtonDelete = (Button) findViewById(R.id.button_delete);
-        mButtonEnter = (Button) findViewById(R.id.button_enter);
+        mButtonNext = (Button) findViewById(R.id.button_next);
 
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,141 +109,98 @@ public class TransferView extends FrameLayout {
         mButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("D", "hahahahha");
-                //mInputMethodService.setInputView(this.transferView);
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(stackNav.getInputMethodService().getApplicationContext(), text, duration);
-                toast.show();
+                CurrentButton = mButton2;
+                setValueOfText();
             }
         });
         mButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("D", "hahahahha");
-                //mInputMethodService.setInputView(this.transferView);
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(stackNav.getInputMethodService().getApplicationContext(), text, duration);
-                toast.show();
+                CurrentButton = mButton3;
+                setValueOfText();
             }
         });
         mButton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("D", "hahahahha");
-                //mInputMethodService.setInputView(this.transferView);
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(stackNav.getInputMethodService().getApplicationContext(), text, duration);
-                toast.show();
+                CurrentButton = mButton4;
+                setValueOfText();
             }
         });
         mButton5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("D", "hahahahha");
-                //mInputMethodService.setInputView(this.transferView);
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(stackNav.getInputMethodService().getApplicationContext(), text, duration);
-                toast.show();
+                CurrentButton = mButton5;
+                setValueOfText();
             }
         });
         mButton6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("D", "hahahahha");
-                //mInputMethodService.setInputView(this.transferView);
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(stackNav.getInputMethodService().getApplicationContext(), text, duration);
-                toast.show();
+                CurrentButton = mButton6;
+                setValueOfText();
             }
         });
         mButton7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("D", "hahahahha");
-                //mInputMethodService.setInputView(this.transferView);
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(stackNav.getInputMethodService().getApplicationContext(), text, duration);
-                toast.show();
+                CurrentButton = mButton7;
+                setValueOfText();
             }
         });
         mButton8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("D", "hahahahha");
-                //mInputMethodService.setInputView(this.transferView);
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(stackNav.getInputMethodService().getApplicationContext(), text, duration);
-                toast.show();
+                CurrentButton = mButton8;
+                setValueOfText();
             }
         });
         mButton9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("D", "hahahahha");
-                //mInputMethodService.setInputView(this.transferView);
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(stackNav.getInputMethodService().getApplicationContext(), text, duration);
-                toast.show();
+                CurrentButton = mButton9;
+                setValueOfText();
             }
         });
         mButton0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("D", "hahahahha");
-                //mInputMethodService.setInputView(this.transferView);
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(stackNav.getInputMethodService().getApplicationContext(), text, duration);
-                toast.show();
+                CurrentButton = mButton0;
+                setValueOfText();
             }
         });
         mButtonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("D", "hahahahha");
-                //mInputMethodService.setInputView(this.transferView);
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(stackNav.getInputMethodService().getApplicationContext(), text, duration);
-                toast.show();
+                CurrentButton = mButtonDelete;
+                // delete from the last char
             }
         });
-        mButtonEnter.setOnClickListener(new View.OnClickListener() {
+        mButtonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("D", "hahahahha");
-                //mInputMethodService.setInputView(this.transferView);
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
+                CurrentButton = mButtonNext;
+                if(ActiveTextView == EditTextAccountNumber){
+                    // go to next
+                } else {
+                    // go fire the transfer api
+                }
 
-                Toast toast = Toast.makeText(stackNav.getInputMethodService().getApplicationContext(), text, duration);
-                toast.show();
             }
         });
     }
 
-    public void setValueOfText () {
+    private void setValueOfText () {
         String currentValue = ActiveTextView.getText().toString();
         String additionalValue = CurrentButton.getText().toString();
 
         ActiveTextView.setText(currentValue+additionalValue);
+    }
+
+    private void setActiveField(TextView activeField, TextView inactiveField) {
+        ActiveTextView = activeField;
+        InactiveTextView = inactiveField;
+        ActiveTextView.setBackgroundResource(R.drawable.active_field);
+        InactiveTextView.setBackgroundResource(0);
     }
 }
