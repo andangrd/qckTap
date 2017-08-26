@@ -16,14 +16,15 @@
         <ImageButton
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
-            android:layout_height="24dp"
+            android:layout_height="18dp"
             android:src="@drawable/dark_back"
-            android:background="@null"/>
+            android:background="@null"
+            android:padding="6sp"/>
         <TextView android:id="@+id/saldo_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mutasi"
-            android:textSize="22sp"
+            android:textSize="16sp"
             android:layout_marginStart="12sp"
             android:textColor="@color/colorPrimary" />
     </LinearLayout>
