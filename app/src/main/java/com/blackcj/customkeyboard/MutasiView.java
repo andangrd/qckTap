@@ -43,6 +43,7 @@ public class MutasiView extends FrameLayout {
         mutasiData.add("Havit - IDR. 100.000");
         mutasiData.add("Andang - IDR. 200.000");
         mutasiData.add("Abaka82 - IDR. 500.000");
+        mutasiData.add("Yoga - IDR. 9.000.000");
         Context context = stackNav.getInputMethodService().getApplicationContext();
         ArrayAdapter adapter = new ArrayAdapter<String>(context, R.layout.mutasi_listview, mutasiData);
 
@@ -57,5 +58,12 @@ public class MutasiView extends FrameLayout {
     }
 
     private void bindViews() {
+        Button backButton = (Button) findViewById(R.id.back_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stackNav.popView();
+            }
+        });
     }
 }

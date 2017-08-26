@@ -23,14 +23,12 @@ public class ControlPanel extends FrameLayout {
     TextView saldoText;
     View transferView;
 
-    // View
     private MutasiView mutasiView;
 
     public ControlPanel (StackNav _stackNav) {
         super(_stackNav.getInputMethodService().getApplicationContext());
         this.stackNav = _stackNav;
 
-        // Init
         inflate();
         bindViews();
         callApi();
