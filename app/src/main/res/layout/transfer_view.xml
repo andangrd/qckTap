@@ -20,7 +20,7 @@
                 android:labelFor="@+id/EditTextName"
                 android:textSize="14sp"
                 android:textColor="@color/colorPrimaryDark" />
-            <EditText
+            <TextView
                 android:id="@+id/edit_text_account_number"
                 android:layout_height="wrap_content"
                 android:hint="@string/edit_text_account_number"
@@ -39,7 +39,7 @@
                 android:labelFor="@+id/EditTextName"
                 android:textSize="14sp"
                 android:textColor="@color/colorPrimaryDark" />
-            <EditText
+            <TextView
                 android:id="@+id/edit_amount_transfer"
                 android:layout_height="wrap_content"
                 android:hint="@string/edit_text_amount"
