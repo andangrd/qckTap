@@ -68,7 +68,7 @@ public class SoftKeyboard extends InputMethodService
     private InputMethodManager mInputMethodManager;
 
     private LatinKeyboardView mInputView;
-    private CandidateView mCandidateView;
+    //private CandidateView mCandidateView;
     private CompletionInfo[] mCompletions;
     
     private StringBuilder mComposing = new StringBuilder();
@@ -158,15 +158,15 @@ public class SoftKeyboard extends InputMethodService
         mInputView.setKeyboard(nextKeyboard);
     }
 
-    /**
-     * Called by the framework when your view for showing candidates needs to
-     * be generated, like {@link #onCreateInputView}.
-     */
-    @Override public View onCreateCandidatesView() {
-        mCandidateView = new CandidateView(this);
-        mCandidateView.setService(this);
-        return mCandidateView;
-    }
+//    /**
+//     * Called by the framework when your view for showing candidates needs to
+//     * be generated, like {@link #onCreateInputView}.
+//     */
+//    @Override public View onCreateCandidatesView() {
+//        mCandidateView = new CandidateView(this);
+//        mCandidateView.setService(this);
+//        return mCandidateView;
+//    }
 
     /**
      * This is the main point where we do our initialization of the input method
@@ -180,7 +180,7 @@ public class SoftKeyboard extends InputMethodService
         // Reset our state.  We want to do this even if restarting, because
         // the underlying state of the text editor could have changed in any way.
         mComposing.setLength(0);
-        updateCandidates();
+        //updateCandidates();
         
         if (!restarting) {
             // Clear shift states.
@@ -270,7 +270,7 @@ public class SoftKeyboard extends InputMethodService
         
         // Clear current composing text and candidates.
         mComposing.setLength(0);
-        updateCandidates();
+        //updateCandidates();
         
         // We only hide the candidates window when finishing input on
         // a particular editor, to avoid popping the underlying application
@@ -313,7 +313,7 @@ public class SoftKeyboard extends InputMethodService
         if (mComposing.length() > 0 && (newSelStart != candidatesEnd
                 || newSelEnd != candidatesEnd)) {
             mComposing.setLength(0);
-            updateCandidates();
+            //updateCandidates();
             InputConnection ic = getCurrentInputConnection();
             if (ic != null) {
                 ic.finishComposingText();
@@ -331,7 +331,7 @@ public class SoftKeyboard extends InputMethodService
         if (mCompletionOn) {
             mCompletions = completions;
             if (completions == null) {
-                setSuggestions(null, false, false);
+             //   setSuggestions(null, false, false);
                 return;
             }
             
@@ -340,7 +340,7 @@ public class SoftKeyboard extends InputMethodService
                 CompletionInfo ci = completions[i];
                 if (ci != null) stringList.add(ci.getText().toString());
             }
-            setSuggestions(stringList, true, true);
+            //setSuggestions(stringList, true, true);
         }
     }
     
@@ -475,7 +475,7 @@ public class SoftKeyboard extends InputMethodService
         if (mComposing.length() > 0) {
             inputConnection.commitText(mComposing, mComposing.length());
             mComposing.setLength(0);
-            updateCandidates();
+            //updateCandidates();
         }
     }
 
@@ -589,43 +589,43 @@ public class SoftKeyboard extends InputMethodService
      * text.  This will need to be filled in by however you are determining
      * candidates.
      */
-    private void updateCandidates() {
-        if (!mCompletionOn) {
-            if (mComposing.length() > 0) {
-                ArrayList<String> list = new ArrayList<String>();
-                //list.add(mComposing.toString());
-                Log.d("SoftKeyboard", "REQUESTING: " + mComposing.toString());
-                mScs.getSentenceSuggestions(new TextInfo[] {new TextInfo(mComposing.toString())}, 5);
-                setSuggestions(list, true, true);
-            } else {
-                setSuggestions(null, false, false);
-            }
-        }
-    }
+//    private void updateCandidates() {
+//        if (!mCompletionOn) {
+//            if (mComposing.length() > 0) {
+//                ArrayList<String> list = new ArrayList<String>();
+//                //list.add(mComposing.toString());
+//                Log.d("SoftKeyboard", "REQUESTING: " + mComposing.toString());
+//                mScs.getSentenceSuggestions(new TextInfo[] {new TextInfo(mComposing.toString())}, 5);
+//                setSuggestions(list, true, true);
+//            } else {
+//                setSuggestions(null, false, false);
+//            }
+//        }
+//    }
     
-    public void setSuggestions(List<String> suggestions, boolean completions,
-            boolean typedWordValid) {
-        if (suggestions != null && suggestions.size() > 0) {
-            setCandidatesViewShown(true);
-        } else if (isExtractViewShown()) {
-            setCandidatesViewShown(true);
-        }
-        mSuggestions = suggestions;
-        if (mCandidateView != null) {
-            mCandidateView.setSuggestions(suggestions, completions, typedWordValid);
-        }
-    }
+//    public void setSuggestions(List<String> suggestions, boolean completions,
+//            boolean typedWordValid) {
+//        if (suggestions != null && suggestions.size() > 0) {
+//            setCandidatesViewShown(true);
+//        } else if (isExtractViewShown()) {
+//            setCandidatesViewShown(true);
+//        }
+//        mSuggestions = suggestions;
+//        if (mCandidateView != null) {
+//            mCandidateView.setSuggestions(suggestions, completions, typedWordValid);
+//        }
+//    }
     
     private void handleBackspace() {
         final int length = mComposing.length();
         if (length > 1) {
             mComposing.delete(length - 1, length);
             getCurrentInputConnection().setComposingText(mComposing, 1);
-            updateCandidates();
+            //updateCandidates();
         } else if (length > 0) {
             mComposing.setLength(0);
             getCurrentInputConnection().commitText("", 0);
-            updateCandidates();
+            //updateCandidates();
         } else {
             keyDownUp(KeyEvent.KEYCODE_DEL);
         }
@@ -663,7 +663,7 @@ public class SoftKeyboard extends InputMethodService
             mComposing.append((char) primaryCode);
             getCurrentInputConnection().setComposingText(mComposing, 1);
             updateShiftKeyState(getCurrentInputEditorInfo());
-            updateCandidates();
+            //updateCandidates();
         } else {
             getCurrentInputConnection().commitText(
                     String.valueOf((char) primaryCode), 1);
@@ -720,9 +720,9 @@ public class SoftKeyboard extends InputMethodService
                 && index < mCompletions.length) {
             CompletionInfo ci = mCompletions[index];
             getCurrentInputConnection().commitCompletion(ci);
-            if (mCandidateView != null) {
-                mCandidateView.clear();
-            }
+//            if (mCandidateView != null) {
+//                mCandidateView.clear();
+//            }
             updateShiftKeyState(getCurrentInputEditorInfo());
         } else if (mComposing.length() > 0) {
 
@@ -737,7 +737,7 @@ public class SoftKeyboard extends InputMethodService
     public void swipeRight() {
         Log.d("SoftKeyboard", "Swipe right");
         if (mCompletionOn || mPredictionOn) {
-            pickDefaultCandidate();
+            //pickDefaultCandidate();
         }
     }
     
@@ -766,20 +766,20 @@ public class SoftKeyboard extends InputMethodService
      */
     @Override
     public void onGetSuggestions(SuggestionsInfo[] results) {
-        final StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < results.length; ++i) {
-            // Returned suggestions are contained in SuggestionsInfo
-            final int len = results[i].getSuggestionsCount();
-            sb.append('\n');
-
-            for (int j = 0; j < len; ++j) {
-                sb.append("," + results[i].getSuggestionAt(j));
-            }
-
-            sb.append(" (" + len + ")");
-        }
-        Log.d("SoftKeyboard", "SUGGESTIONS: " + sb.toString());
+//        final StringBuilder sb = new StringBuilder();
+//
+//        for (int i = 0; i < results.length; ++i) {
+//            // Returned suggestions are contained in SuggestionsInfo
+//            final int len = results[i].getSuggestionsCount();
+//            sb.append('\n');
+//
+//            for (int j = 0; j < len; ++j) {
+//                sb.append("," + results[i].getSuggestionAt(j));
+//            }
+//
+//            sb.append(" (" + len + ")");
+//        }
+//        Log.d("SoftKeyboard", "SUGGESTIONS: " + sb.toString());
     }
     private static final int NOT_A_LENGTH = -1;
 
@@ -795,15 +795,15 @@ public class SoftKeyboard extends InputMethodService
     @Override
     public void onGetSentenceSuggestions(SentenceSuggestionsInfo[] results) {
         Log.d("SoftKeyboard", "onGetSentenceSuggestions");
-        final List<String> sb = new ArrayList<>();
-        for (int i = 0; i < results.length; ++i) {
-            final SentenceSuggestionsInfo ssi = results[i];
-            for (int j = 0; j < ssi.getSuggestionsCount(); ++j) {
-                dumpSuggestionsInfoInternal(
-                        sb, ssi.getSuggestionsInfoAt(j), ssi.getOffsetAt(j), ssi.getLengthAt(j));
-            }
-        }
-        Log.d("SoftKeyboard", "SUGGESTIONS: " + sb.toString());
-        setSuggestions(sb, true, true);
+//        final List<String> sb = new ArrayList<>();
+//        for (int i = 0; i < results.length; ++i) {
+//            final SentenceSuggestionsInfo ssi = results[i];
+//            for (int j = 0; j < ssi.getSuggestionsCount(); ++j) {
+//                dumpSuggestionsInfoInternal(
+//                        sb, ssi.getSuggestionsInfoAt(j), ssi.getOffsetAt(j), ssi.getLengthAt(j));
+//            }
+//        }
+//        Log.d("SoftKeyboard", "SUGGESTIONS: " + sb.toString());
+        //setSuggestions(sb, true, true);
     }
 }
