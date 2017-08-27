@@ -280,7 +280,7 @@ public class TransferView extends FrameLayout {
             String amount = EditTextAmountTransfer.getText().toString();
             TransferResponse items = client.transfer(destination, amount);
 
-            CharSequence text = "ongratulation, your transaction is successful. :)";
+            CharSequence text = "Congratulation, your transaction is successful. :)";
 
             int duration = Toast.LENGTH_SHORT;
 
