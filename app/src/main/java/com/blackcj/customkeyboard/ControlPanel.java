@@ -22,6 +22,8 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by mitrais on 8/26/17.
  */
@@ -88,7 +90,40 @@ public class ControlPanel extends FrameLayout {
         layoutInflater.inflate(R.layout.control_panel, this, true);
     }
 
+    private void changeNameAndAvatar(Boolean noRek1) {
+        Context context = this.stackNav.getInputMethodService().getApplicationContext();
+        TextView namaText = (TextView) findViewById(R.id.nama_title);
+        CircleImageView image = (CircleImageView) findViewById(R.id.profile_image);
+
+        String nama = namaText.getText().toString();
+        if(!noRek1) {
+            namaText.setText("Pevita Pearce");
+            image.setImageResource(R.drawable.ava_pevita);
+        } else {
+            image.setImageResource(R.drawable.ava_chelsea);
+            namaText.setText("Chelsea Islan");
+        }
+    }
+
     private void bindViews() {
+        changeNameAndAvatar(APIClient.getNoRek());
+        saldoText = (TextView) findViewById(R.id.saldo_value);
+        saldoText.setOnClickListener(new View.OnClickListener() {
+            private int countTap = 0;
+            @Override
+            public void onClick(View v) {
+                if(countTap % 2 == 0) {
+                    APIClient.switchNoRek();
+                    Context context = stackNav.getInputMethodService().getApplicationContext();
+                    CharSequence text = "Switched Account";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+                countTap++;
+            }
+        });
 
         mutasiButton = (Button) findViewById(R.id.mutasi_button);
         mutasiButton.setOnClickListener(new View.OnClickListener() {
