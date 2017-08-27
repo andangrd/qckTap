@@ -11,9 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:src="@drawable/ic_dolar"
+
         android:background="@null"
-        android:padding="6sp"
-        android:paddingTop="9sp"/>
+        android:paddingLeft="6sp"
+        android:paddingRight="6sp"
+        android:layout_marginTop="12sp"/>
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
