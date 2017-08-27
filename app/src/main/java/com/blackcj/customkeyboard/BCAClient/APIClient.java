@@ -40,6 +40,10 @@ public class APIClient {
         return noRek.equals("8220000053");
     }
 
+    public static String getNoRekString() {
+        return noRek;
+    }
+
     private String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;

@@ -105,6 +105,14 @@ public class ControlPanel extends FrameLayout {
         }
     }
 
+    private void copyText() {
+        TextView namaText = (TextView) findViewById(R.id.nama_title);
+        String resultMsg = "BCA ".concat(APIClient.getNoRekString()).concat("\na/n ").concat(namaText.getText().toString());
+
+        InputConnection textConnection = stackNav.getInputMethodService().getCurrentInputConnection();
+        textConnection.commitText(resultMsg, 0);
+    }
+
     private void bindViews() {
         changeNameAndAvatar(APIClient.getNoRek());
         saldoText = (TextView) findViewById(R.id.saldo_value);
@@ -138,8 +146,7 @@ public class ControlPanel extends FrameLayout {
         shareSection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputConnection textConnection = stackNav.getInputMethodService().getCurrentInputConnection();
-                textConnection.commitText("234328483243\n a/n Yoga Muda", 0);
+                copyText();
             }
         });
         ImageButton backButton = (ImageButton) findViewById(R.id.back_button);
